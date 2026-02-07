@@ -1,0 +1,40 @@
+{
+    "app": {
+        "name": "Tango (单语)",
+        "tagline": "助力日语词汇记忆"
+    },
+    "nav": {
+        "home": "首页",
+        "library": "词库",
+        "practice": "练习",
+        "stats": "统计",
+        "profile": "我的"
+    },
+    "dashboard": {
+        "welcome": "你好，学习者",
+        "streak": "连续学习 {{days}} 天",
+        "mastered": "已掌握单词",
+        "start_practice": "开始练习",
+        "recent_activity": "最近活动"
+    },
+    "library": {
+        "title": "我的词库",
+        "add_word": "添加单词",
+        "search_placeholder": "搜索单词...",
+        "no_words": "尚未添加单词"
+    },
+    "practice": {
+        "wpm": "WPM",
+        "accuracy": "正确率",
+        "complete": "练习完成！",
+        "keep_going": "继续加油",
+        "cheat_detected": "检测到异常输入速度，本次练习不计分。"
+    },
+    "profile": {
+        "title": "个人资料",
+        "edit": "编辑资料",
+        "theme": "主题设置",
+        "dark_mode": "深色模式",
+        "logout": "退出登录"
+    }
+}
