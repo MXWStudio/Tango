@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Word } from '../types';
-import { t } from '../locales/i18n';
+import { t } from '../src/locales/i18n';
 import { dataService } from '../src/services/dataService';
 
 interface PracticeProps {

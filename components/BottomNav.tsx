@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { View } from '../types';
-import { t } from '../locales/i18n';
+import { t } from '../src/locales/i18n';
 
 interface BottomNavProps {
   currentView: View;

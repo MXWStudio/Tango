@@ -23,7 +23,7 @@ const AddWord: React.FC<AddWordProps> = ({ onNavigate, onAdd }) => {
     if (!kanji.trim()) return;
     setIsGenerating(true);
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+      const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY || '' });
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
         contents: `Provide the furigana (kana), romaji, and Chinese translation for the Japanese word: "${kanji}".`,
@@ -58,11 +58,11 @@ const AddWord: React.FC<AddWordProps> = ({ onNavigate, onAdd }) => {
   const fetchSuggestions = async () => {
     setIsGenerating(true);
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
-      const prompt = kanji 
-        ? `List 3 Japanese words related to "${kanji}" in category "${category}".` 
+      const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY || '' });
+      const prompt = kanji
+        ? `List 3 Japanese words related to "${kanji}" in category "${category}".`
         : `List 3 common Japanese words for beginners in category "${category}".`;
-        
+
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
         contents: prompt,
@@ -121,7 +121,7 @@ const AddWord: React.FC<AddWordProps> = ({ onNavigate, onAdd }) => {
   return (
     <div className="flex-1 flex flex-col bg-background-light dark:bg-background-dark h-full">
       <header className="flex items-center justify-between px-4 py-4 pt-12 sticky top-0 z-10 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md">
-        <button 
+        <button
           onClick={() => onNavigate(View.LIBRARY)}
           className="flex items-center justify-center size-10 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-primary"
         >
@@ -134,19 +134,18 @@ const AddWord: React.FC<AddWordProps> = ({ onNavigate, onAdd }) => {
         <div>
           <label className="block text-sm font-medium text-slate-500 mb-2 ml-1">日语单词</label>
           <div className="relative flex items-center">
-            <input 
-              type="text" 
+            <input
+              type="text"
               value={kanji}
               onChange={(e) => setKanji(e.target.value)}
-              className="w-full bg-white dark:bg-white/5 border-0 rounded-2xl p-6 text-3xl font-bold text-slate-900 dark:text-white placeholder:text-slate-200 focus:ring-2 focus:ring-primary/20 transition-all shadow-sm" 
-              placeholder="e.g. 猫" 
+              className="w-full bg-white dark:bg-white/5 border-0 rounded-2xl p-6 text-3xl font-bold text-slate-900 dark:text-white placeholder:text-slate-200 focus:ring-2 focus:ring-primary/20 transition-all shadow-sm"
+              placeholder="e.g. 猫"
             />
-            <button 
+            <button
               onClick={handleSmartFill}
               disabled={!kanji || isGenerating}
-              className={`absolute right-4 p-2 rounded-xl transition-all ${
-                isGenerating ? 'animate-pulse text-primary' : 'text-slate-300 hover:text-primary'
-              }`}
+              className={`absolute right-4 p-2 rounded-xl transition-all ${isGenerating ? 'animate-pulse text-primary' : 'text-slate-300 hover:text-primary'
+                }`}
             >
               <span className="material-symbols-outlined text-[28px]">{isGenerating ? 'sync' : 'auto_fix_high'}</span>
             </button>
@@ -157,22 +156,22 @@ const AddWord: React.FC<AddWordProps> = ({ onNavigate, onAdd }) => {
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-slate-500 mb-2 ml-1">假名</label>
-            <input 
-              type="text" 
+            <input
+              type="text"
               value={kana}
               onChange={(e) => setKana(e.target.value)}
-              className="w-full bg-white dark:bg-white/5 border-0 rounded-2xl p-4 text-lg font-medium text-slate-900 dark:text-white placeholder:text-slate-300 focus:ring-2 focus:ring-primary/20 transition-all shadow-sm h-14" 
-              placeholder="ねこ" 
+              className="w-full bg-white dark:bg-white/5 border-0 rounded-2xl p-4 text-lg font-medium text-slate-900 dark:text-white placeholder:text-slate-300 focus:ring-2 focus:ring-primary/20 transition-all shadow-sm h-14"
+              placeholder="ねこ"
             />
           </div>
           <div>
             <label className="block text-sm font-medium text-slate-500 mb-2 ml-1">翻译</label>
-            <input 
-              type="text" 
+            <input
+              type="text"
               value={translation}
               onChange={(e) => setTranslation(e.target.value)}
-              className="w-full bg-white dark:bg-white/5 border-0 rounded-2xl p-4 text-lg font-medium text-slate-900 dark:text-white placeholder:text-slate-300 focus:ring-2 focus:ring-primary/20 transition-all shadow-sm h-14" 
-              placeholder="猫" 
+              className="w-full bg-white dark:bg-white/5 border-0 rounded-2xl p-4 text-lg font-medium text-slate-900 dark:text-white placeholder:text-slate-300 focus:ring-2 focus:ring-primary/20 transition-all shadow-sm h-14"
+              placeholder="猫"
             />
           </div>
         </div>
@@ -183,7 +182,7 @@ const AddWord: React.FC<AddWordProps> = ({ onNavigate, onAdd }) => {
               <span className="material-symbols-outlined text-primary text-[20px]">lightbulb</span>
               灵感推荐
             </h2>
-            <button 
+            <button
               onClick={fetchSuggestions}
               disabled={isGenerating}
               className="text-sm font-medium text-primary hover:underline flex items-center gap-1"
@@ -218,10 +217,10 @@ const AddWord: React.FC<AddWordProps> = ({ onNavigate, onAdd }) => {
           <div className="flex flex-wrap gap-2">
             {CATEGORIES.map((cat) => (
               <label key={cat} className="cursor-pointer">
-                <input 
-                  type="radio" 
-                  name="category" 
-                  className="peer sr-only" 
+                <input
+                  type="radio"
+                  name="category"
+                  className="peer sr-only"
                   checked={category === cat}
                   onChange={() => setCategory(cat)}
                 />
@@ -235,7 +234,7 @@ const AddWord: React.FC<AddWordProps> = ({ onNavigate, onAdd }) => {
       </main>
 
       <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background-light via-background-light to-transparent dark:from-background-dark dark:via-background-dark pt-12 z-20">
-        <button 
+        <button
           onClick={handleSubmit}
           disabled={!kanji || !kana || !translation}
           className="w-full bg-primary disabled:opacity-50 hover:bg-primary-dark text-white font-bold text-lg h-14 rounded-full shadow-xl shadow-primary/30 flex items-center justify-center gap-2 transition-transform active:scale-[0.98]"

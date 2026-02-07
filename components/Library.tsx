@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { View, Word } from '../types';
-import { t } from '../locales/i18n';
+import { t } from '../src/locales/i18n';
 
 interface LibraryProps {
   onNavigate: (view: View) => void;
@@ -51,8 +51,8 @@ const Library: React.FC<LibraryProps> = ({ onNavigate, words }) => {
           <button
             onClick={() => setFilter('unlearned')}
             className={`flex-1 py-2 text-[15px] font-bold rounded-[20px] transition-all text-center ${filter === 'unlearned'
-                ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm'
-                : 'text-slate-500 dark:text-slate-400'
+              ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm'
+              : 'text-slate-500 dark:text-slate-400'
               }`}
           >
             未掌握
@@ -60,8 +60,8 @@ const Library: React.FC<LibraryProps> = ({ onNavigate, words }) => {
           <button
             onClick={() => setFilter('mastered')}
             className={`flex-1 py-2 text-[15px] font-bold rounded-[20px] transition-all text-center ${filter === 'mastered'
-                ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm'
-                : 'text-slate-500 dark:text-slate-400'
+              ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm'
+              : 'text-slate-500 dark:text-slate-400'
               }`}
           >
             已熟练
